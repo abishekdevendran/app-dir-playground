@@ -1,6 +1,6 @@
 const { db } = require('@vercel/postgres');
 const {
-  invoices,
+data,
   customers,
   revenue,
   users,
@@ -50,7 +50,7 @@ async function seedInvoices(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
-    // Create the "invoices" table if it doesn't exist
+  // Create the "data" table if it doesn't exist
     const createTable = await client.sql`
     CREATE TABLE IF NOT EXISTS invoices (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
