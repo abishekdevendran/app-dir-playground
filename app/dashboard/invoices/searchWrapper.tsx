@@ -19,12 +19,20 @@ const SearchWrapper = async ({
         <Search placeholder="Search invoices..." />
         <CreateInvoice />
       </div>
-      <Table invoices={invoices} />
-      <div className="mt-5 flex w-full justify-center">
-        <Pagination
-          totalPages={Math.ceil(Number(invoices[0]?.total_count) / 6) ?? 0}
-        />
-      </div>
+      {(Math.ceil(Number(invoices[0]?.total_count) / 6) ?? 0) > 0 ? (
+        <>
+          <Table invoices={invoices} />
+          <div className="mt-5 flex w-full justify-center">
+            <Pagination
+              totalPages={Math.ceil(Number(invoices[0]?.total_count) / 6) ?? 1}
+            />
+          </div>
+        </>
+      ) : (
+        <div className="mt-5 flex w-full justify-center">
+          <h1 className="text-2xl">No invoices found.</h1>
+        </div>
+      )}
     </>
   );
 };

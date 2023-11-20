@@ -36,7 +36,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
             if (index === allPages.length - 1) position = 'last';
             if (allPages.length === 1) position = 'single';
             if (page === '...') position = 'middle';
-
+            if (!page) return null;
             return (
               <PaginationNumber
                 key={index}

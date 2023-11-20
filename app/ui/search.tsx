@@ -13,7 +13,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
     searchParams.get('query')?.toString() ?? '',
   );
   function handleSearch(term: string) {
+    if (term === (searchParams.get('query')?.toString() ?? '')) return;
+    console.table({ term, query: searchParams.get('query')?.toString() ?? '' });
     const params = new URLSearchParams(searchParams);
+    console.log("Here's the params: ", params);
     params.set('page', '1');
     if (term) {
       params.set('query', term);
