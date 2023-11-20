@@ -2,17 +2,13 @@ import Image from 'next/image';
 import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { fetchFilteredInvoices } from '@/app/lib/data';
+import { InvoicesTable } from '@/app/lib/definitions';
 
-export default async function InvoicesTable({
-  query,
-  currentPage,
+export default function InvoicesTable({
+  invoices,
 }: {
-  query: string;
-  currentPage: number;
+  invoices: InvoicesTable[];
 }) {
-  const invoices = await fetchFilteredInvoices(query, currentPage);
-
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -31,7 +27,7 @@ export default async function InvoicesTable({
                         className="mr-2 rounded-full"
                         width={28}
                         height={28}
-                        alt='Customer profile image'
+                        alt="Customer profile image"
                       />
                       <p>{invoice.name}</p>
                     </div>
@@ -90,7 +86,7 @@ export default async function InvoicesTable({
                         className="rounded-full"
                         width={28}
                         height={28}
-                        alt='Customer profile image'
+                        alt="Customer profile image"
                       />
                       <p>{invoice.name}</p>
                     </div>

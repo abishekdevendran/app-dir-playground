@@ -108,7 +108,8 @@ export async function fetchFilteredInvoices(
         invoices.status,
         customers.name,
         customers.email,
-        customers.image_url
+        customers.image_url,
+        COUNT(*) OVER() AS total_count
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       WHERE
@@ -120,7 +121,7 @@ export async function fetchFilteredInvoices(
       ORDER BY invoices.date DESC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
     `;
-
+    console.log(invoices);
     return invoices.rows;
   } catch (error) {
     console.error('Database Error:', error);
